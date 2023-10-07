@@ -77,7 +77,6 @@ def apply_watermark(
         file.path,
         "-i",
         wtm.overlay.path,
-        "-an",
         "-dn",
         "-sn",
         "-r",
@@ -93,7 +92,7 @@ def apply_watermark(
         "-tune",
         "fastdecode",
         "-filter_complex",
-        f"overlay={wtm.offset}",
+        f"[1][0]scale2ref=w=\'iw*85/100\':h=\'ow/mdar\'[wm][vid];[vid][wm]overlay={wtm.offset}",
         output_file,
     ]
 
